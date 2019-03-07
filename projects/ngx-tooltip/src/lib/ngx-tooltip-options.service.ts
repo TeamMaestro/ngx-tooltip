@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Props as TooltipOptions } from 'tippy.js';
+import { TooltipOptions } from './ngx-tooltip.types';
 
 /*
  * This is not a real service, but it looks like it from the outside.

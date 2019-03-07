@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TooltipOptions, TooltipContent } from 'tooltip';
+import { TooltipOptions, TooltipContent } from 'ngx-tooltip';
 
 @Component({
   selector: 'app-root',

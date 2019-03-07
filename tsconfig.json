@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "tooltip": [
-        "dist/tooltip"
+      "ngx-tooltip": [
+        "dist/ngx-tooltip"
       ],
-      "tooltip/*": [
-        "dist/tooltip/*"
+      "ngx-tooltip/*": [
+        "dist/ngx-tooltip/*"
       ]
     }
   }

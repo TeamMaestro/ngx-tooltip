@@ -1,11 +1,13 @@
 import { Directive, Input, OnInit, ElementRef, Inject } from '@angular/core';
 import tippy from 'tippy.js';
-import { TooltipOptionsService } from './tooltip-options.service';
+import { TooltipOptionsService } from './ngx-tooltip-options.service';
 import {
-    Props as TooltipOptions,
-    Placement as TooltipPlacement,
-    Content as TooltipContent
-} from 'tippy.js';
+    TooltipContent,
+    TooltipPlacement,
+    TooltipOptions,
+    TooltipAnimation,
+    TooltipArrowType
+} from './ngx-tooltip.types';
 
 @Directive({
     selector: '[ngxTooltip]'
@@ -13,10 +15,10 @@ import {
 export class TooltipDirective implements OnInit {
     @Input('ngxTooltip') tooltipOptions: TooltipOptions;
     @Input() tooltipContent: TooltipContent;
-    @Input() tooltipArrowType: 'sharp' | 'round';
+    @Input() tooltipArrowType: TooltipArrowType;
     @Input() tooltipMaxWidth: number | string;
     @Input() tooltipPlacement: TooltipPlacement;
-    @Input() tooltipAnimation: 'shift-away' | 'shift-toward' | 'fade' | 'scale' | 'perspective';
+    @Input() tooltipAnimation: TooltipAnimation;
     @Input() tooltipTrigger: string;
     @Input() tooltipTouch: boolean;
     @Input() tooltipTouchHold: boolean;

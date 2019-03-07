@@ -1,8 +1,8 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipDirective } from './tooltip.directive';
-import { TooltipOptionsService } from './tooltip-options.service';
-import { Props as TooltipOptions } from 'tippy.js';
+import { TooltipDirective } from './ngx-tooltip.directive';
+import { TooltipOptionsService } from './ngx-tooltip-options.service';
+import { TooltipOptions } from './ngx-tooltip.types';
 
 
 @NgModule({

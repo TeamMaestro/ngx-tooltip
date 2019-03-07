@@ -102,6 +102,7 @@ _example.component.html_
 ## Properties
 **Some commonly used options are made available through element properties.**
 [**see full list of options**](#All-Options)
+
 |property|Description|type|
 |---|---|---|
 |`ngxTooltip`| all options can be passed via the directive itself | <span style="color: gold">TooltipOptions</span> |

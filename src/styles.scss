@@ -1,0 +1,19 @@
+:root {
+    --color-sea: #1E90FF;
+    --color-sky: #00BFFF;
+    --color-sand: #F1F3E3;
+    --color-charcoal: #333333;
+    --color-metal: rgb(231, 231, 235);
+}
+
+// tooltip themes
+@import './theme/currant.scss';
+@import './theme/tomato.scss';
+
+body {
+    margin: 0px;
+}
+app-root {
+    height: 100vh;
+    width: 100vh;
+}

@@ -1,0 +1,332 @@
+<!--tooltip template.-->
+<div id="tooltip-template-demo-1" #tooltipTemplate>
+    <strong>
+        HTML
+        <span style="color: aqua;">
+            elements
+        </span>
+        <span style="color: pink;">
+            work
+        </span>
+    </strong>
+    <ul style="text-align: left;">
+        <li>see</li>
+        <li>even</li>
+        <li>lists</li>
+    </ul>
+</div>
+
+<!-- gif example -->
+<!--
+<div class="gif-examples">
+    <div #gifExampleTemplate style="display: flex; flex-direction: row; align-items: center;">
+        <img src="../assets//Angular_full_color_logo.svg.png" alt="Smiley face" height="42" width="42">
+        <span style="color: aqua;">
+            works&nbsp;
+        </span>
+        <span style="color: pink;">
+            with&nbsp;
+        </span>
+        <span style="color: gold;">
+            HTML&nbsp;
+        </span>
+        <span style="color: palegreen;">
+            too!
+        </span>
+    </div>
+
+    <div class="gif-example demo-example" style="cursor: auto" tooltip
+        tooltipArrowType="sharp"
+        tooltipContent="Lorem ipsum dolor"
+    >
+        hover
+    </div>
+    <div class="gif-example demo-example ripple" tooltip
+        [tooltipContent]=gifExampleTemplate
+        tooltipPlacement="right-end"
+        tooltipTrigger="click"
+    >
+        click
+    </div>
+    <div class="gif-example demo-example" ngxTooltip
+        tooltipTheme="blackcurrant"
+        tooltipPlacement="right"
+        tooltipContent="blackcurrant & seafoam"
+    >
+        custom theme
+    </div>
+</div>
+-->
+
+
+
+
+<div class="page-header">
+    Demos
+    <div class="page-menu">
+        <a class="button" href="https://atomiks.github.io/tippyjs/all-options">Tippy.js Docs</a>
+    </div>
+</div>
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Content
+        <div class="demo-group-header-detail">
+            Tooltips can contain plain text or HTML
+        </div>
+    </div>
+
+    <div class="demo-group-content">
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipContent="sample plain text">
+                string
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipContent='<strong>html <span style="color: aqua;">content</span></strong>'>
+                html
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip [tooltipContent]='tooltipTemplate'>
+                HTMLElement
+            </div>
+        </div>
+
+    </div>
+
+    <div class="demo-group-link">
+        <a href="https://atomiks.github.io/tippyjs/html-content">more content documentation</a>
+    </div>
+
+</div>
+
+
+
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Placement
+        <div class="demo-group-header-detail">
+            Tooltips can be placed in four different ways in relation to the reference element.
+            Additionally, the ngxTooltip can be shifted along the axis using the suffix
+            <span class="highlight">-start</span> or <span class="highlight">-end</span>.
+        </div>
+    </div>
+
+    <div class="demo-group-content">
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipPlacement="top">
+                top
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipPlacement="bottom">
+                bottom
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipPlacement="left">
+                left
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipPlacement="right">
+                right
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipPlacement="top-start">
+                top-start
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipPlacement="top-end">
+                top-end
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Arrows
+        <div class="demo-group-header-detail">
+            Using the tooltipArrowType property automatically enables the arrow
+        </div>
+    </div>
+
+    <div class="demo-group-content">
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipArrowType="sharp">
+                sharp
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipArrowType="round">
+                round
+            </div>
+        </div>
+
+    </div>
+
+    <div class="demo-group-link">
+        <a href="https://atomiks.github.io/tippyjs/#arrows">more arrow documentation</a>
+    </div>
+
+</div>
+
+
+
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Trigger
+    </div>
+
+    <div class="demo-group-content">
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipTrigger="mouseenter">
+                mouseenter
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example ripple" type="text" ngxTooltip tooltipTrigger="click">
+                click
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Animation
+        <div class="demo-group-header-detail">
+            Tooltips can have different types of transition animations. Note, the filling effect has been disabled in these examples (animateFill: false).
+        </div>
+    </div>
+
+    <div class="demo-group-content">
+
+        <div class="demo">
+            <div class="demo-example" type="text" [ngxTooltip]="animateOptions" tooltipAnimation="shift-away">
+                shift-away
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" [ngxTooltip]="animateOptions" tooltipAnimation="shift-toward">
+                shift-toward
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" [ngxTooltip]="animateOptions" tooltipAnimation="fade">
+                fade
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" [ngxTooltip]="animateOptions" tooltipAnimation="scale">
+                scale
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" [ngxTooltip]="animateOptions" tooltipAnimation="perspective">
+                perspective
+            </div>
+        </div>
+
+    </div>
+
+    <div class="demo-group-link">
+        <a href="https://atomiks.github.io/tippyjs/#animations">more animation documentation</a>
+    </div>
+
+</div>
+
+
+
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Theme
+    </div>
+
+    <div class="demo-group-content">
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipTheme="blackcurrant">
+                blackcurrant
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip tooltipTheme="tomato">
+                tomato
+            </div>
+        </div>
+
+    </div>
+
+    <div class="demo-group-link">
+        <a href="https://atomiks.github.io/tippyjs/themes/">more theming documentation</a>
+    </div>
+
+</div>
+
+
+
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Max Width
+    </div>
+
+    <div class="demo-group-content">
+
+            <div class="demo">
+                <div class="demo-example" type="text" ngxTooltip [tooltipMaxWidth]="200">
+                    200
+                </div>
+            </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip [tooltipMaxWidth]="100">
+                100
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip [tooltipMaxWidth]='50'>
+                50
+            </div>
+        </div>
+
+    </div>
+
+</div>

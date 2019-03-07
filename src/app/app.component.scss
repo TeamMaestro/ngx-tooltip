@@ -1,0 +1,117 @@
+:host {
+    color: var(--color-charcoal);
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    height: 100vh;
+    width: 100vh;
+}
+
+.page {
+    &-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 32px;
+        font-weight: 700;
+        background: var(--color-sea);
+        color: var(--color-sand);
+        padding: 25px;
+    }
+}
+
+.demo {
+    &-group {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        color: var(--color-charcoal);
+        &-header {
+            font-size: 32px;
+            font-weight: 700;
+            &-detail {
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+        &-content {
+            display: flex;
+            flex-direction: row;
+        }
+        &-link a {
+            text-decoration: none;
+            color: var(--color-sea);
+            &:hover {
+                color: var(--color-sky);
+            }
+        }
+    }
+    &-example {
+        cursor: pointer;
+        outline: none;
+        background: var(--color-sea);
+        color: var(--color-sand);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 20px;
+        padding: 5px;
+        margin: 10px;
+        border-radius: 3px;
+        &:hover {
+            box-shadow: 0 2px 2px 2px rgba(0,0,0,0.2);
+            background: var(--color-sky);
+        }
+    }
+    &-code {
+        color: var(--color-charcoal);
+    }
+}
+
+
+.button {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 16px;
+    background: var(--color-charcoal);
+    color: var(--color-sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 3px;
+    &:hover {
+        box-shadow: 0 2px 2px 2px rgba(0,0,0,0.2);
+        background: var(--color-sand);
+        color: var(--color-sea);
+    }
+}
+
+.highlight {
+    color: black;
+    background: var(--color-metal);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+/*
+.gif-example {
+    margin: 50px;
+}
+*/
+
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+}
+.ripple:hover {
+    background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+}
+.ripple:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+}

@@ -103,7 +103,7 @@ _example.component.html_
 **Some commonly used options are made available through element properties.**
 [**see full list of options**](#All-Options)
 |property|Description|type|
-|--|--|--|
+|---|---|---|
 |`ngxTooltip`| all options can be passed via the directive itself | <span style="color: gold">TooltipOptions</span> |
 |`tooltipContent`| The content of the tooltip. Along with a string or element, you can use a function that takes the reference element as an argument and returns content. |  <ul><li><span style="color: gold">TooltipContent</span></li><li> <span style="color: dodgerblue;">string</span> \| <span style="color: gold">Element</span> \| ((ref: <span style="color: gold">Element</span>) => <span style="color: gold">Element</span> \| <span style="color: dodgerblue;">string</span>)</li><ul> |
 |`tooltipPlacement`| Positions the tippy relative to its reference element. Use the suffix <span style="color: green">'-start'</span> or <span style="color: green">'-end'</span> to shift the tippy to the start or end of the reference element, instead of centering it. For example, top-start or left-end. | <ul><li><span style="color: gold">TooltipPlacement</span></li><li> <span style="color: green">'top'</span> \| <span style="color: green">'bottom'</span> \| <span style="color: green">'left'</span> \| <span style="color: green">'right'</span> \| <span style="color: green">'top-start'</span> \| <span style="color: green">'top-end'</span> \| <span style="color: green">'bottom-start'</span> \| <span style="color: green">'bottom-end'</span> \| <span style="color: green">'left-start'</span> \| <span style="color: green">'left-end'</span> \| <span style="color: green">'right-start'</span> \| <span style="color: green">'right-end'</li></ul> | 
@@ -122,8 +122,9 @@ _example.component.html_
 
 ### CSS Variables
 _\*  denotes custom theme name_
+
 | Variable | Description |
-|--|--|
+|---|---|
 | `--tooltip-*-background` | Full CSS `background` property. |
 | `--tooltip-*-arrow` | `color` of arrow.</br>It is highly recommended to keep same as background color. |
 | `--tooltip-*-color` | Full CSS `color` property. |

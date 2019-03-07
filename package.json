@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@ngx-prism/core": "^2.0.1",
+    "@teamhive/ngx-tooltip": "0.0.1",
     "@types/prismjs": "^1.9.0",
     "core-js": "^2.5.4",
     "prismjs": "^1.9.0",

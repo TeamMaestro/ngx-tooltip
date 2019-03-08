@@ -26,6 +26,7 @@ export class TooltipDirective implements OnInit {
     @Input() tooltipAllowHtml: boolean;
 
     tooltipInstance = null;
+    theme = null;
 
 
     constructor(
@@ -54,60 +55,62 @@ export class TooltipDirective implements OnInit {
 
     setTheme() {
         // generate theme class name
-        const theme =
+        this.theme =
             this.tooltipTheme
             || (this.tooltipOptions ? this.tooltipOptions.theme : null)
             || (this.initOptions ? this.initOptions.theme : null)
             || '';
 
         // if a theme name was provided, then generate styling
-        if (theme && theme.length > 1) {
+        if (this.theme && this.theme.length > 1) {
 
             try {
                 // if theme style element doesn't exist then create it
-                let style = document.querySelector(`style.tooltip-${theme}`);
+                let style = document.querySelector(`style#ngx-tooltip-${this.theme}-theme`);
                 if (!style) {
                     style = document.createElement('style');
-                    style.setAttribute('class', `tooltip-${theme}`);
+                    style.setAttribute('id', `ngx-tooltip-${this.theme}-theme`);
 
                     // based on tippy.js theming docs: https://atomiks.github.io/tippyjs/themes/#creating-a-theme
-                    style.innerHTML =
-                        `.tippy-tooltip.${theme}-theme {
-                            background-color: var(--tooltip-${theme}-color-background) !important;
-                            color: var(--tooltip-${theme}-color) !important;
-                            font: var(--tooltip-${theme}-font) !important;
-                        }
-                        .tippy-tooltip.${theme}-theme[data-animatefill] {
-                            background-color: transparent !important;
-                        }
-                        .tippy-tooltip.${theme}-theme .tippy-backdrop {
-                            background-color: var(--tooltip-${theme}-background) !important;
-                        }
-                        .tippy-popper[x-placement^='top'] .tippy-tooltip.${theme}-theme .tippy-arrow {
-                            border-top-color: var(--tooltip-${theme}-arrow) !important;
-                        }
-                        .tippy-popper[x-placement^='bottom'] .tippy-tooltip.${theme}-theme .tippy-arrow {
-                            border-bottom-color: var(--tooltip-${theme}-arrow) !important;
-                        }
-                        .tippy-popper[x-placement^='left'] .tippy-tooltip.${theme}-theme .tippy-arrow {
-                            border-left-color: var(--tooltip-${theme}-arrow) !important;
-                        }
-                        .tippy-popper[x-placement^='right'] .tippy-tooltip.${theme}-theme .tippy-arrow {
-                            border-right-color: var(--tooltip-${theme}-arrow) !important;
-                        }
-                        .tippy-tooltip.${theme}-theme .tippy-roundarrow {
-                            fill: var(--tooltip-${theme}-arrow) !important;
-                        }`;
-                    this.el.nativeElement.parentNode.insertBefore(style, this.el.nativeElement);
+                    style.innerHTML = ([
+                        `.tippy-tooltip.${this.theme}-theme {`,
+                            `background-color: var(--tooltip-${this.theme}-color-background);`,
+                            `color: var(--tooltip-${this.theme}-color);`,
+                            `font: var(--tooltip-${this.theme}-font);`,
+                            `box-shadow: var(--tooltip-${this.theme}-shadow);`,
+                        `}`,
+                        `.tippy-tooltip.${this.theme}-theme[data-animatefill] {`,
+                            `background-color: var(--tooltip-${this.theme}-background);`,
+                        `}`,
+                        `.tippy-tooltip.${this.theme}-theme .tippy-backdrop {`,
+                            `background-color: var(--tooltip-${this.theme}-background);`,
+                        `}`,
+                        `.tippy-popper[x-placement^='top'] .tippy-tooltip.${this.theme}-theme .tippy-arrow {`,
+                            `border-top-color: var(--tooltip-${this.theme}-arrow);`,
+                        `}`,
+                        `.tippy-popper[x-placement^='bottom'] .tippy-tooltip.${this.theme}-theme .tippy-arrow {`,
+                            `border-bottom-color: var(--tooltip-${this.theme}-arrow);`,
+                        `}`,
+                        `.tippy-popper[x-placement^='left'] .tippy-tooltip.${this.theme}-theme .tippy-arrow {`,
+                            `border-left-color: var(--tooltip-${this.theme}-arrow);`,
+                        `}`,
+                        `.tippy-popper[x-placement^='right'] .tippy-tooltip.${this.theme}-theme .tippy-arrow {`,
+                            `border-right-color: var(--tooltip-${this.theme}-arrow);`,
+                        `}`,
+                        `.tippy-tooltip.${this.theme}-theme .tippy-roundarrow {`,
+                            `fill: var(--tooltip-${this.theme}-arrow);`,
+                        `}`]).join('');
+                    document.head.appendChild(style);
                 }
 
             // porbably using Angular with server or web worker platform.
             } catch (error) {
-                throw new Error('Error in DOM query. May be the result of using @teamhive/ngx-tooltip with server or webworker');
+                throw new Error(
+                    'Error in DOM query. May be the result of conflicts between @teamhive/ngx-tooltip and Angular with server or webworker'
+                );
             }
         }
     }
-
 
     ngOnInit() {
         const tooltipOptions = this.getAllTooltipOptions();

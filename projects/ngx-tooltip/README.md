@@ -130,6 +130,7 @@ _\*  denotes custom theme name_
 | `--tooltip-*-arrow` | `color` of arrow.</br>It is highly recommended to keep same as background color. |
 | `--tooltip-*-color` | Full CSS `color` property. |
 | `--tooltip-*-font` | Full CSS `font` property. |
+| `--tooltip-*-shadow` | Full CSS 'box-shadow' property|
 
 _example.scss_
 ```css
@@ -148,6 +149,7 @@ _example.component.html_
 ```
 <img width="400" src="https://user-images.githubusercontent.com/35740174/53969914-a278b500-40c7-11e9-87e4-a985809588a4.gif"></img>
 
+for advanced theming, see the Tippy.js [theming docs](https://atomiks.github.io/tippyjs/themes/).
 
 ## All Options
 **options taken from tippy.js docs**

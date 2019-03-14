@@ -36,7 +36,7 @@ export class TooltipDirective implements OnInit {
 
 
     getAllTooltipOptions() {
-        const options = Object.assign({}, this.initOptions, this.tooltipOptions);
+        const options = Object.assign({}, this.initOptions || {}, this.tooltipOptions || {});
         if (this.tooltipContent) { options.content = this.tooltipContent; }
         if (this.tooltipPlacement) { options.placement = this.tooltipPlacement; }
         if (this.tooltipAnimation) { options.animation = this.tooltipAnimation; }

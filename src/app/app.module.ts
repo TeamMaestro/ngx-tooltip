@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-// import { TooltipModule, TooltipOptions } from 'ngx-tooltip';
-import { TooltipModule, TooltipOptions } from '@teamhive/ngx-tooltip';
+import { TooltipModule, TooltipOptions } from 'dist/ngx-tooltip';
+// import { TooltipModule, TooltipOptions } from '@teamhive/ngx-tooltip';
 
 @NgModule({
   declarations: [

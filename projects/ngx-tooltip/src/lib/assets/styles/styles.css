@@ -5,33 +5,35 @@
     --tooltip-font: bold italic 15px/20px Arial, "Helvetica Neue", Helvetica, sans-serif;
     --tooltip-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
     --tooltip-border-radius: 5px;
+    --tooltip-text-align: left;
 }
 
 .tippy-tooltip {
-    background-color: var(--tooltip-background-color);
-    color: var(--tooltip-color);
-    font: var(--tooltip-font);
-    box-shadow: var(--tooltip-box-shadow);
-    border-radius: var(--tooltip-border-radius);
+    background-color: var(--tooltip-background-color) !important;
+    color: var(--tooltip-color) !important;
+    font: var(--tooltip-font) !important;
+    box-shadow: var(--tooltip-box-shadow) !important;
+    border-radius: var(--tooltip-border-radius) !important;
+    text-align: var(--tooltip-text-align) !important;
 }
 .tippy-tooltip[data-animatefill] {
-    background-color: var(--tooltip-background-color);
+    background-color: var(--tooltip-background-color) !important;
 }
 .tippy-tooltip .tippy-backdrop {
-    background-color: var(--tooltip-background-color);
+    background-color: var(--tooltip-background-color) !important;
 }
 .tippy-popper[x-placement^='top'] .tippy-tooltip .tippy-arrow {
-    border-top-color: var(--tooltip-arrow-color);
+    border-top-color: var(--tooltip-arrow-color) !important;
 }
 .tippy-popper[x-placement^='bottom'] .tippy-tooltip .tippy-arrow {
-    border-bottom-color: var(--tooltip-arrow-color);
+    border-bottom-color: var(--tooltip-arrow-color) !important;
 }
 .tippy-popper[x-placement^='left'] .tippy-tooltip .tippy-arrow {
-    border-left-color: var(--tooltip-arrow-color);
+    border-left-color: var(--tooltip-arrow-color) !important;
 }
 .tippy-popper[x-placement^='right'] .tippy-tooltip .tippy-arrow {
-    border-right-color: var(--tooltip-arrow-color);
+    border-right-color: var(--tooltip-arrow-color) !important;
 }
 .tippy-tooltip .tippy-roundarrow {
-    fill: var(--tooltip-arrow-color);
+    fill: var(--tooltip-arrow-color) !important;
 }

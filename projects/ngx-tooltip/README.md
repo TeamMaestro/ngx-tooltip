@@ -133,6 +133,7 @@ When you pass a theme name via `TooltipModule.forRoot{}`, `ngxTooltip`, or `tool
 | `--tooltip-font` | Full CSS `font` property. |
 | `--tooltip-box-shadow` | Full CSS `box-shadow` property. |
 | `--tooltip-border-radius` | Full CSS `border-radius` property. |
+| `--tooltip-text-align` | Full CSS `text-align` property. |
 
 _example.scss_
 ```scss
@@ -147,6 +148,7 @@ _example.scss_
     --tooltip-font: 16px "Helvetica Neue", Helvetica, sans-serif;
     --tooltip-box-shadow: 2px 2px 5px grey;
     --tooltip-border-radius: 5px;
+    --tooltip-text-align: center;
 }
 ```
 _example.component.html_
@@ -451,6 +453,6 @@ for advanced theming, see the Tippy.js [theming docs](https://atomiks.github.io/
 </table>
 
 ## Contributors
-[<img alt="Michael Riess" src="https://avatars0.githubusercontent.com/u/35740174?v=4&s=117" width="117">](https://github.com/mriess260) |
+[<img alt="Michael Riess" src="https://avatars3.githubusercontent.com/u/35740174?s=460&v=4" width="117">](https://github.com/mriess260) |
 :---:
 |[Michael Riess](https://github.com/mriess260)|

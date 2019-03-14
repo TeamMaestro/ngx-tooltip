@@ -4,11 +4,32 @@
     --color-sand: #F1F3E3;
     --color-charcoal: #333333;
     --color-metal: rgb(231, 231, 235);
+  
 }
 
 // tooltip themes
-@import './theme/currant.scss';
-@import './theme/tomato.scss';
+// @import '@teamhive/assets/styles/styles.css';
+@import '../dist/ngx-tooltip/assets/styles/styles.css';
+
+
+// set css variables for theme only within that theme class
+.blackcurrant-theme {
+    --tooltip-color: #9df2a4;
+    --tooltip-arrow-color: #463E53;
+    --tooltip-background-color: #463E53;
+    --tooltip-font: 16px "Helvetica Neue", Helvetica, sans-serif;
+    --tooltip-box-shadow: 2px 2px 5px grey;
+    --tooltip-border-radius: 5px;
+}
+
+.tomato-theme {
+    --tooltip-color: yellow;
+    --tooltip-arrow-color: tomato;
+    --tooltip-background-color: tomato;
+    --tooltip-font: bold italic 15px/20px Arial, "Helvetica Neue", Helvetica, sans-serif;
+    --tooltip-box-shadow: 10px 10px 5px grey;
+    --tooltip-border-radius: 0px;
+}
 
 body {
     margin: 0px;

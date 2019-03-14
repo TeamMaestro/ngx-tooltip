@@ -119,31 +119,39 @@ _example.component.html_
 
 
 ## Theming
-@teamhive/ngx-tooltip makes use of css variables for theming. When you pass a theme name via `TooltipModule.forRoot{}`, `ngxTooltip`, or `tooltipTheme` - a css class is attatched to the tooltip elements so they can be targeted for styling.
+@teamhive/ngx-tooltip makes use of css variables for theming.
+
+When you pass a theme name via `TooltipModule.forRoot{}`, `ngxTooltip`, or `tooltipTheme` - a css class is attatched to the tooltip elements so they can be targeted for styling.
 
 ### CSS Variables
-_\*  denotes custom theme name_
 
 | Variable | Description |
 |---|---|
-| `--tooltip-*-background` | Full CSS `background` property. |
-| `--tooltip-*-arrow` | `color` of arrow.</br>It is highly recommended to keep same as background color. |
-| `--tooltip-*-color` | Full CSS `color` property. |
-| `--tooltip-*-font` | Full CSS `font` property. |
-| `--tooltip-*-shadow` | Full CSS 'box-shadow' property|
+| `--tooltip-color` | Full CSS `color` property. |
+| `--tooltip-arrow-color` | Color of arrow. Used for various properties necessary to properly & uniformly color arrow. It is highly recommended to keep same as background color. |
+| `--tooltip-background-color` | Full CSS `background-color` property. |
+| `--tooltip-font` | Full CSS `font` property. |
+| `--tooltip-box-shadow` | Full CSS `box-shadow` property. |
+| `--tooltip-border-radius` | Full CSS `border-radius` property. |
 
 _example.scss_
-```css
-:root {
-    --tooltip-themeName-background: #463E53;    // blackcurrant
-    --tooltip-themeName-arrow: #463E53;         // blackcurrant
-    --tooltip-themeName-color: #9df2a4;         // seafoam
-    --tooltip-themeName-font: bold italic 15px/20px Arial, "Helvetica Neue", Helvetica, sans-serif;
+```scss
+// the package styles.css file must be imported to use css variables
+@import "@teamhive/ngx-tooltip/assets/styles/styles.css";
+
+// custom styling should be placed in class selector of `${customThemeName}-theme`
+.currant-theme {
+    --tooltip-color: #9df2a4;               // seafoam
+    --tooltip-arrow-color: #463E53;         // blackcurrant
+    --tooltip-background-color: #463E53;    // blackcurrant
+    --tooltip-font: 16px "Helvetica Neue", Helvetica, sans-serif;
+    --tooltip-box-shadow: 2px 2px 5px grey;
+    --tooltip-border-radius: 5px;
 }
 ```
 _example.component.html_
 ```html
-<div ngxTooltip tooltipTheme="themeName" tooltipContent="blackcurrant & seafoam"…>
+<div ngxTooltip tooltipTheme="currant" tooltipContent="blackcurrant & seafoam"…>
     custom theme
 </div>
 ```
@@ -441,3 +449,8 @@ for advanced theming, see the Tippy.js [theming docs](https://atomiks.github.io/
         </tr>
     </tbody>
 </table>
+
+## Contributors
+[<img alt="Michael Riess" src="https://avatars0.githubusercontent.com/u/35740174?v=4&s=117" width="117">](https://github.com/mriess260) |
+:---:
+|[Michael Riess](https://github.com/mriess260)|

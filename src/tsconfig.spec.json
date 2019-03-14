@@ -5,7 +5,12 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+        "ngx-tooltip": [
+            "projects/ngx-tooltip"
+        ]
+    }
   },
   "files": [
     "test.ts",

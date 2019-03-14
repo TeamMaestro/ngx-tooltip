@@ -2,7 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+        "ngx-tooltip": [
+            "projects/ngx-tooltip"
+        ]
+    }
   },
   "exclude": [
     "test.ts",

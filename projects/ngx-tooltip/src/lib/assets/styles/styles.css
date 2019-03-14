@@ -6,6 +6,7 @@
     --tooltip-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
     --tooltip-border-radius: 5px;
     --tooltip-text-align: left;
+    --tooltip-padding: 5px;
 }
 
 .tippy-tooltip {
@@ -15,6 +16,7 @@
     box-shadow: var(--tooltip-box-shadow) !important;
     border-radius: var(--tooltip-border-radius) !important;
     text-align: var(--tooltip-text-align) !important;
+    padding: var(--tooltip-padding) !important;
 }
 .tippy-tooltip[data-animatefill] {
     background-color: var(--tooltip-background-color) !important;

@@ -134,6 +134,7 @@ When you pass a theme name via `TooltipModule.forRoot{}`, `ngxTooltip`, or `tool
 | `--tooltip-box-shadow` | Full CSS `box-shadow` property. |
 | `--tooltip-border-radius` | Full CSS `border-radius` property. |
 | `--tooltip-text-align` | Full CSS `text-align` property. |
+| `--tooltip-padding` | Full CSS `padding` property. |
 
 _example.scss_
 ```scss
@@ -149,6 +150,7 @@ _example.scss_
     --tooltip-box-shadow: 2px 2px 5px grey;
     --tooltip-border-radius: 5px;
     --tooltip-text-align: center;
+    --tooltip-padding: 5px;
 }
 ```
 _example.component.html_

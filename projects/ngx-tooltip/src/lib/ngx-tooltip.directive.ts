@@ -90,6 +90,9 @@ export class TooltipDirective implements OnInit {
     }
 
     @Input() set tooltipAllowHtml(allowHTML: boolean) {
+        if (allowHTML !== null || allowHTML !== undefined) {
+
+        }
         this.setOptions({ allowHTML });
     }
 
@@ -103,6 +106,12 @@ export class TooltipDirective implements OnInit {
 
 
     setOptions(options: TooltipOptions) {
+        // clean options object
+        for (const prop in options) {
+            if (options[prop] === null || options[prop] === undefined) {
+                delete options[prop];
+            }
+        }
         this.options = Object.assign(this.options || {}, options);
         if (this.tooltipInstance) {
             this.tooltipInstance.set(options);
@@ -112,6 +121,16 @@ export class TooltipDirective implements OnInit {
 
     ngOnInit() {
         this.options = Object.assign({}, this.initOptions || {}, this.tooltipOptions || {}, this.options || {});
+        this.options = this.cleanOptions(this.options);
         this.tooltipInstance = tippy(this.el.nativeElement, this.options) as TooltipInstance;
+    }
+
+    cleanOptions(options: any) {
+        for (const prop in options) {
+            if (options[prop] === null || options[prop] === undefined) {
+                delete options[prop];
+            }
+        }
+        return options;
     }
 }

@@ -20,8 +20,7 @@ export class AppComponent implements OnInit {
         animateFill: false
     };
 
-    constructor() {
-    }
+    constructor() {}
 
     ngOnInit() {
         this.tooltipElement = document.getElementById('tooltip-template-demo-1');

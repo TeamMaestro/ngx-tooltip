@@ -1,17 +1,15 @@
 # NgxTooltip
 **Built on top of [Tippy.js](https://atomiks.github.io/tippyjs/)**
 
-**Generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.**
-
 <img width="400" src="https://user-images.githubusercontent.com/35740174/53966936-32b3fb80-40c2-11e9-8a2b-b8ad9e94a440.gif"></img>
 
 ## Install
 install peer dependency first
 ```
-npm i tippy.js@4.0.4 --save
+npm i tippy.js@4.0.4
 ```
 ```
-npm i @teamhive/ngx-tooltip --save
+npm i @teamhive/ngx-tooltip
 ```
 
 

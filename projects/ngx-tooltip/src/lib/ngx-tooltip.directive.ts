@@ -2,6 +2,7 @@ import { Directive, Input, OnInit, ElementRef, Inject } from '@angular/core';
 import tippy from 'tippy.js';
 import { TooltipOptionsService } from './ngx-tooltip-options.service';
 import {
+    TooltipInstance,
     TooltipContent,
     TooltipPlacement,
     TooltipOptions,
@@ -13,48 +14,104 @@ import {
     selector: '[ngxTooltip]'
 })
 export class TooltipDirective implements OnInit {
-    @Input('ngxTooltip') tooltipOptions: TooltipOptions;
-    @Input() tooltipContent: TooltipContent;
-    @Input() tooltipArrowType: TooltipArrowType;
-    @Input() tooltipMaxWidth: number | string;
-    @Input() tooltipPlacement: TooltipPlacement;
-    @Input() tooltipAnimation: TooltipAnimation;
-    @Input() tooltipTrigger: string;
-    @Input() tooltipTouch: boolean;
-    @Input() tooltipTouchHold: boolean;
-    @Input() tooltipTheme: string;
-    @Input() tooltipAllowHtml: boolean;
 
-    tooltipInstance = null;
-    theme = null;
+    private options: TooltipOptions;
+    private tooltipInstance: TooltipInstance = null;
+
+    @Input('ngxTooltip') set tooltipOptions(options: TooltipOptions) {
+        this.setOptions(options);
+    }
+    get tooltipOptions() {
+        return this.options;
+    }
+
+    @Input() set tooltipContent(content: TooltipContent) {
+        this.setOptions({ content });
+    }
+    get tooltipContent() {
+        return this.options.content;
+    }
+
+    @Input() set tooltipArrowType(arrowType: TooltipArrowType) {
+        this.options.arrow = true;
+        this.setOptions({ arrowType });
+    }
+    get tooltipArrowType() {
+        return this.options.arrowType;
+    }
+
+    @Input() set tooltipMaxWidth(maxWidth: number | string) {
+        this.setOptions({ maxWidth });
+    }
+    get tooltipMaxWidth() {
+        return this.options.maxWidth;
+    }
+
+    @Input() set tooltipPlacement(placement: TooltipPlacement) {
+        this.setOptions({ placement });
+    }
+    get tooltipPlacement() {
+        return this.options.placement;
+    }
+
+    @Input() set tooltipAnimation(animation: TooltipAnimation) {
+        this.setOptions({ animation });
+    }
+    get tooltipAnimation() {
+        return this.options.animation;
+    }
+
+    @Input() set tooltipTrigger(trigger: string) {
+        this.setOptions({ trigger });
+    }
+    get tooltipTrigger() {
+        return this.options.trigger;
+    }
+
+    @Input() set tooltipTouch(touch: boolean) {
+        this.setOptions({ touch });
+    }
+    get tooltipTouch() {
+        return this.options.touch;
+    }
+
+    @Input() set tooltipTouchHold(touchHold: boolean) {
+        this.setOptions({ touchHold });
+    }
+    get tooltipTouchHold() {
+        return this.options.touchHold;
+    }
+
+    @Input() set tooltipTheme(theme: string) {
+        this.setOptions({ theme });
+    }
+    get tooltipTheme() {
+        return this.options.theme;
+    }
+
+    @Input() set tooltipAllowHtml(allowHTML: boolean) {
+        this.setOptions({ allowHTML });
+    }
 
 
     constructor(
         @Inject(TooltipOptionsService) private initOptions,
         private el: ElementRef,
-    ) {}
+    ) {
+        this.options = {};
+    }
 
 
-    getAllTooltipOptions() {
-        const options = Object.assign({}, this.initOptions || {}, this.tooltipOptions || {});
-        if (this.tooltipContent) { options.content = this.tooltipContent; }
-        if (this.tooltipPlacement) { options.placement = this.tooltipPlacement; }
-        if (this.tooltipAnimation) { options.animation = this.tooltipAnimation; }
-        if (this.tooltipMaxWidth) { options.maxWidth = this.tooltipMaxWidth; }
-        if (this.tooltipTrigger) { options.trigger = this.tooltipTrigger; }
-        if (this.tooltipTouch) { options.touch = this.tooltipTouch; }
-        if (this.tooltipTouchHold) { options.touchHold = this.tooltipTouchHold; }
-        if (this.tooltipTheme) { options.theme = this.tooltipTheme; }
-        if (this.tooltipArrowType) {
-            options.arrow = true;
-            options.arrowType = this.tooltipArrowType;
+    setOptions(options: TooltipOptions) {
+        this.options = Object.assign(this.options || {}, options);
+        if (this.tooltipInstance) {
+            this.tooltipInstance.set(options);
         }
-        return options;
     }
 
 
     ngOnInit() {
-        const tooltipOptions = this.getAllTooltipOptions();
-        this.tooltipInstance = tippy(this.el.nativeElement, tooltipOptions);
+        this.options = Object.assign({}, this.initOptions || {}, this.tooltipOptions || {}, this.options || {});
+        this.tooltipInstance = tippy(this.el.nativeElement, this.options) as TooltipInstance;
     }
 }

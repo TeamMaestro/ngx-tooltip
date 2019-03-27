@@ -14,7 +14,8 @@ import { TooltipModule, TooltipOptions } from 'dist/ngx-tooltip';
     BrowserModule,
     TooltipModule.forRoot({
         placement: 'top',
-        content: 'Lorem ipsum dolor'
+        content: 'Lorem ipsum dolor',
+        // duration: 100
     } as TooltipOptions)
   ],
   providers: [],

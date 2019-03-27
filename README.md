@@ -128,7 +128,10 @@ When you pass a theme name via `TooltipModule.forRoot{}`, `ngxTooltip`, or `tool
 | `--tooltip-color` | Full CSS `color` property. |
 | `--tooltip-arrow-color` | Color of arrow. Used for various properties necessary to properly & uniformly color arrow. It is highly recommended to keep same as background color. |
 | `--tooltip-background-color` | Full CSS `background-color` property. |
-| `--tooltip-font` | Full CSS `font` property. |
+| `--tooltip-font-size` | Full CSS `font-size` property. |
+| `--tooltip-font-weight` | Full CSS `font-weight` property. |
+| `--tooltip-font-style` | Fulll CSS `font-style` property. |
+| `--tooltip-font-family` | Full CSS `font-famliy` property. |
 | `--tooltip-box-shadow` | Full CSS `box-shadow` property. |
 | `--tooltip-border-radius` | Full CSS `border-radius` property. |
 | `--tooltip-text-align` | Full CSS `text-align` property. |
@@ -144,7 +147,10 @@ _example.scss_
     --tooltip-color: #9df2a4;               // seafoam
     --tooltip-arrow-color: #463E53;         // blackcurrant
     --tooltip-background-color: #463E53;    // blackcurrant
-    --tooltip-font: 16px "Helvetica Neue", Helvetica, sans-serif;
+    --tooltip-font-size: 16px;
+    --tooltip-font-weight: 500;
+    --tooltip-font-style: normal;
+    --tooltip-font-family: "Helvetica Neue", Helvetica, sans-serif;
     --tooltip-box-shadow: 2px 2px 5px grey;
     --tooltip-border-radius: 5px;
     --tooltip-text-align: center;

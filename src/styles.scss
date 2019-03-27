@@ -17,7 +17,10 @@
     --tooltip-color: #9df2a4;
     --tooltip-arrow-color: #463E53;
     --tooltip-background-color: #463E53;
-    --tooltip-font: 16px "Helvetica Neue", Helvetica, sans-serif;
+    --tooltip-font-size: 16px;
+    --tooltip-font-weight: 500;
+    --tooltip-font-style: normal;
+    --tooltip-font-family: "Helvetica Neue", Helvetica, sans-serif;
     --tooltip-box-shadow: 2px 2px 5px grey;
     --tooltip-border-radius: 5px;
 }
@@ -26,7 +29,10 @@
     --tooltip-color: yellow;
     --tooltip-arrow-color: tomato;
     --tooltip-background-color: tomato;
-    --tooltip-font: bold italic 15px/20px Arial, "Helvetica Neue", Helvetica, sans-serif;
+    --tooltip-font-size: 15px/20px;
+    --tooltip-font-weight: 200;
+    --tooltip-font-style: bold italic;
+    --tooltip-font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     --tooltip-box-shadow: 10px 10px 5px grey;
     --tooltip-border-radius: 0px;
 }

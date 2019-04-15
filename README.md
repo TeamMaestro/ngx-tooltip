@@ -498,4 +498,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Contributors
 [<img alt="Michael Riess" src="https://avatars3.githubusercontent.com/u/35740174?s=460&v=4" width="117">](https://github.com/mriess260) |
 :---:
-|[Michael Riess](https://github.com/mriess260)|
+|[Michael Riess](https://github.com/michael-riess)|

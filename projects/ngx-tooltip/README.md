@@ -461,4 +461,4 @@ for advanced theming, see the Tippy.js [theming docs](https://atomiks.github.io/
 ## Contributors
 [<img alt="Michael Riess" src="https://avatars3.githubusercontent.com/u/35740174?s=460&v=4" width="117">](https://github.com/mriess260) |
 :---:
-|[Michael Riess](https://github.com/mriess260)|
+|[Michael Riess](https://github.com/michael-riess)|

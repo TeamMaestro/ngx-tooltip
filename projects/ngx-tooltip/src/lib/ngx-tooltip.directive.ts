@@ -13,20 +13,20 @@ import {
 @Directive({
     selector: '[ngxTooltip]'
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective {
 
-    private options: TooltipOptions;
+    private options: TooltipOptions = {};
     private tooltipInstance: TooltipInstance = null;
 
     @Input('ngxTooltip') set tooltipOptions(options: TooltipOptions) {
-        this.setOptions(options);
+        this.updateOptions(options);
     }
     get tooltipOptions() {
         return this.options;
     }
 
     @Input() set tooltipContent(content: TooltipContent) {
-        this.setOptions({ content });
+        this.updateOptions({ content });
     }
     get tooltipContent() {
         return this.options.content;
@@ -34,56 +34,56 @@ export class TooltipDirective implements OnInit {
 
     @Input() set tooltipArrowType(arrowType: TooltipArrowType) {
         this.options.arrow = true;
-        this.setOptions({ arrowType });
+        this.updateOptions({ arrowType });
     }
     get tooltipArrowType() {
         return this.options.arrowType;
     }
 
     @Input() set tooltipMaxWidth(maxWidth: number | string) {
-        this.setOptions({ maxWidth });
+        this.updateOptions({ maxWidth });
     }
     get tooltipMaxWidth() {
         return this.options.maxWidth;
     }
 
     @Input() set tooltipPlacement(placement: TooltipPlacement) {
-        this.setOptions({ placement });
+        this.updateOptions({ placement });
     }
     get tooltipPlacement() {
         return this.options.placement;
     }
 
     @Input() set tooltipAnimation(animation: TooltipAnimation) {
-        this.setOptions({ animation });
+        this.updateOptions({ animation });
     }
     get tooltipAnimation() {
         return this.options.animation;
     }
 
     @Input() set tooltipTrigger(trigger: string) {
-        this.setOptions({ trigger });
+        this.updateOptions({ trigger });
     }
     get tooltipTrigger() {
         return this.options.trigger;
     }
 
     @Input() set tooltipTouch(touch: boolean) {
-        this.setOptions({ touch });
+        this.updateOptions({ touch });
     }
     get tooltipTouch() {
         return this.options.touch;
     }
 
     @Input() set tooltipTouchHold(touchHold: boolean) {
-        this.setOptions({ touchHold });
+        this.updateOptions({ touchHold });
     }
     get tooltipTouchHold() {
         return this.options.touchHold;
     }
 
     @Input() set tooltipTheme(theme: string) {
-        this.setOptions({ theme });
+        this.updateOptions({ theme });
     }
     get tooltipTheme() {
         return this.options.theme;
@@ -93,7 +93,7 @@ export class TooltipDirective implements OnInit {
         if (allowHTML !== null || allowHTML !== undefined) {
 
         }
-        this.setOptions({ allowHTML });
+        this.updateOptions({ allowHTML });
     }
 
 
@@ -101,28 +101,34 @@ export class TooltipDirective implements OnInit {
         @Inject(TooltipOptionsService) private initOptions,
         private el: ElementRef,
     ) {
-        this.options = {};
+        this.create();
+        this.updateOptions(this.options);
     }
 
+    get isEnabled() {
+        return this.tooltipInstance && this.tooltipInstance.state.isEnabled;
+    }
+
+    updateOptions(options: TooltipOptions) {
+        // clean options object
+        this.options = this.cleanOptions({ ...this.initOptions, ...this.options, ...options });
+        if (this.isEnabled) {
+            if (this.options.content) {
+                this.tooltipInstance.set(this.options);
+            } else {
+                this.disable();
+            }
+        } else if (this.options.content) {
+            this.enable();
+            this.updateOptions(this.options);
+        }
+    }
 
     setOptions(options: TooltipOptions) {
-        // clean options object
-        for (const prop in options) {
-            if (options[prop] === null || options[prop] === undefined) {
-                delete options[prop];
-            }
-        }
-        this.options = Object.assign(this.options || {}, options);
+        this.options = options;
         if (this.tooltipInstance) {
             this.tooltipInstance.set(options);
         }
-    }
-
-
-    ngOnInit() {
-        this.options = Object.assign({}, this.initOptions || {}, this.tooltipOptions || {}, this.options || {});
-        this.options = this.cleanOptions(this.options);
-        this.tooltipInstance = tippy(this.el.nativeElement, this.options) as TooltipInstance;
     }
 
     cleanOptions(options: any) {
@@ -132,5 +138,30 @@ export class TooltipDirective implements OnInit {
             }
         }
         return options;
+    }
+
+    create() {
+        this.tooltipInstance = tippy(this.el.nativeElement) as TooltipInstance;
+    }
+
+    destroy() {
+        if (this.tooltipInstance) {
+            this.tooltipInstance.destroy();
+        }
+        this.tooltipInstance = null;
+    }
+
+    enable() {
+        if (this.tooltipInstance) {
+            this.tooltipInstance.enable();
+        } else {
+            this.create();
+        }
+    }
+
+    disable() {
+        if (this.tooltipInstance) {
+            this.tooltipInstance.disable();
+        }
     }
 }

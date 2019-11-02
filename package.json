@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build.ngx-tooltip": "ng build ngx-tooltip && npm run copy-styles",
+    "build:ngx-tooltip": "ng build ngx-tooltip && npm run copy-styles",
     "copy-styles": "cpx \"./projects/ngx-tooltip/src/lib/assets/styles/*.css\" \"./dist/ngx-tooltip/assets/styles/\""
   },
   "private": true,

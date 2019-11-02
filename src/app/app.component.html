@@ -58,9 +58,6 @@
 </div>
 -->
 
-
-
-
 <div class="page-header">
     Demos
     <div class="page-menu">
@@ -85,14 +82,20 @@
         </div>
 
         <div class="demo">
-            <div class="demo-example" type="text" ngxTooltip tooltipContent='<strong>html <span style="color: aqua;">content</span></strong>'>
+            <div class="demo-example" type="text" ngxTooltip tooltipContent="<strong>html <span style='color: aqua;'>content</span></strong>">
                 html
             </div>
         </div>
 
         <div class="demo">
-            <div class="demo-example" type="text" ngxTooltip [tooltipContent]='tooltipTemplate'>
+            <div class="demo-example" type="text" ngxTooltip [tooltipContent]="tooltipTemplate">
                 HTMLElement
+            </div>
+        </div>
+
+        <div class="demo">
+            <div class="demo-example" type="text" [ngxTooltip]="{ content: undefined }">
+                undefined
             </div>
         </div>
 

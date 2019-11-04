@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 import { TooltipDirective } from './ngx-tooltip.directive';
 import { TooltipOptionsService } from './ngx-tooltip-options.service';
 import { TooltipOptions } from './ngx-tooltip.types';
+import { TooltipService } from './ngx-tooltip.service';
 
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+    ],
+    providers: [
+        TooltipService,
     ],
     declarations: [
-        TooltipDirective
+        TooltipDirective,
     ],
     exports: [
-        TooltipDirective
+        TooltipDirective,
     ]
 })
 export class TooltipModule {
@@ -25,7 +29,7 @@ export class TooltipModule {
             providers: [
                 {
                     provide: TooltipOptionsService,
-                    useValue: initOptions
+                    useValue: initOptions,
                 }
             ]
         };

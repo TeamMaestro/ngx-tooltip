@@ -56,10 +56,15 @@ export class TooltipService {
     }
 
     /**
-     * Enables all `TooltipInstance`s generated thus far
+     * Enables all `TooltipInstance`s generated thus far.
+     * Tooltips without content remain disabled to prevent empty tooltips from being displayed.
      */
     enableAll() {
-        this.instances.forEach(instance => instance.enable());
+        this.instances.forEach(instance => {
+            if (instance.props.content) {
+                instance.enable();
+            }
+        });
     }
 
     /**

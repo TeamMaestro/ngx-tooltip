@@ -107,7 +107,7 @@ forceCloseAll() {
 | method | Description |
 |---|---|
 | `hideAll()` | Hides all `TooltipInstance`s|
-| `enableAll()` | Enables all `TooltipInstance`s|
+| `enableAll()` | Enables all `TooltipInstance`s except those without content to prevent empty tooltips from being displayed.|
 | `disableAll()` | Disables all `TooltipInstance`s|
 | `destroyAll()` | Destroys all `TooltipInstance`s|
 

@@ -92,6 +92,25 @@ _example.component.html_
 <div [ngxTooltip]="tooltipOptions"> … </div>
 ```
 
+## TooltipService
+_example.component.ts_
+```ts
+import { TooltipService } from '@teamhive/ngx-tooltip';
+⋮
+constructor(tooltipService: TooltipService) {}
+⋮
+forceCloseAll() {
+    tooltipService.hideAll();
+}
+⋮
+```
+| method | Description |
+|---|---|
+| `hideAll()` | Hides all `TooltipInstance`s|
+| `enableAll()` | Enables all `TooltipInstance`s|
+| `disableAll()` | Disables all `TooltipInstance`s|
+| `destroyAll()` | Destroys all `TooltipInstance`s|
+
 
 ## Properties
 **Some commonly used options are made available through element properties.**

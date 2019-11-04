@@ -9,6 +9,7 @@ import {
     TooltipAnimation,
     TooltipArrowType
 } from './ngx-tooltip.types';
+import { TooltipService } from './ngx-tooltip.service';
 
 @Directive({
     selector: '[ngxTooltip]'
@@ -100,6 +101,7 @@ export class TooltipDirective {
     constructor(
         @Inject(TooltipOptionsService) private initOptions,
         private el: ElementRef,
+        private tooltipService: TooltipService,
     ) {
         this.create();
         this.updateOptions(this.options);
@@ -142,12 +144,14 @@ export class TooltipDirective {
 
     create() {
         this.tooltipInstance = tippy(this.el.nativeElement) as TooltipInstance;
+        this.tooltipService.addInstance(this.tooltipInstance);
     }
 
     destroy() {
         if (this.tooltipInstance) {
             this.tooltipInstance.destroy();
         }
+        this.tooltipService.removeInstance(this.tooltipInstance);
         this.tooltipInstance = null;
     }
 

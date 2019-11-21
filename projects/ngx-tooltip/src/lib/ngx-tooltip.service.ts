@@ -27,12 +27,12 @@ export class TooltipService {
     /**
      * Removes `TooltipInstance` from collection.
      * Used for internal module functionality, so should be used with caution.
-     * @param instance `TooltipInstance` to be removed
+     * @param id unique numeric `TooltipInstance` id
      */
-    removeInstance(instance: TooltipInstance) {
-        if (instance.id) {
-            if (this.instances.has(instance.id)) {
-                return this.instances.delete(instance.id);
+    removeInstance(id: number) {
+        if (id) {
+            if (this.instances.has(id)) {
+                return this.instances.delete(id);
             } else {
                 console.error('TooltipInstance does not exist in collection: cannot be removed from collection');
             }

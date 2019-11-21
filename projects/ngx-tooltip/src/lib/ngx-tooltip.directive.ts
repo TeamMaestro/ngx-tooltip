@@ -7,7 +7,8 @@ import {
     TooltipPlacement,
     TooltipOptions,
     TooltipAnimation,
-    TooltipArrowType
+    TooltipArrowType,
+    TooltipState
 } from './ngx-tooltip.types';
 import { TooltipService } from './ngx-tooltip.service';
 
@@ -107,7 +108,7 @@ export class TooltipDirective {
         this.updateOptions(this.options);
     }
 
-    get state(): Partial<TooltipInstance['state']> {
+    get state(): TooltipState {
         return this.tooltipInstance ? this.tooltipInstance.state : {};
     }
 
@@ -143,7 +144,7 @@ export class TooltipDirective {
         return options;
     }
 
-    create() {
+    private create() {
         this.tooltipInstance = tippy(this.el.nativeElement) as TooltipInstance;
         this.tooltipService.addInstance(this.tooltipInstance);
     }
@@ -152,7 +153,7 @@ export class TooltipDirective {
         if (this.tooltipInstance) {
             this.tooltipInstance.destroy();
         }
-        this.tooltipService.removeInstance(this.tooltipInstance);
+        this.tooltipService.removeInstance(this.id);
         this.tooltipInstance = null;
     }
 

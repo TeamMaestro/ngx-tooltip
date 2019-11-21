@@ -1,3 +1,4 @@
+import { Instance as TooltipInstance } from 'tippy.js';
 export type TooltipAnimation = 'shift-away' | 'shift-toward' | 'fade' | 'scale' | 'perspective';
 export type TooltipArrowType = 'sharp' | 'round';
 export {
@@ -6,3 +7,4 @@ export {
     Placement as TooltipPlacement,
     Content as TooltipContent
 } from 'tippy.js';
+export type TooltipState = Partial<TooltipInstance['state']>;

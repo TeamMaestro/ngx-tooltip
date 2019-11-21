@@ -104,19 +104,18 @@ forceCloseAll() {
 }
 ⋮
 ```
-| method | Description |
-|---|---|
-| `hideAll()` | Hides all `TooltipInstance`s|
-| `enableAll()` | Enables all `TooltipInstance`s except those without content to prevent empty tooltips from being displayed.|
-| `disableAll()` | Disables all `TooltipInstance`s|
-| `destroyAll()` | Destroys all `TooltipInstance`s|
+| method | description | return type |
+|---|---|---|
+| `hideAll()` | Hides each `TooltipInstance` | <span style="color: dodgerblue;">void</span> |
+| `showAll()` | Shows each `TooltipInstance` | <span style="color: dodgerblue;">void</span> |
+| `enableAll()` | Enables each `TooltipInstance` except those without content to prevent empty tooltips from being displayed. | <span style="color: dodgerblue;">void</span> |
+| `disableAll()` | Disables each `TooltipInstance` | <span style="color: dodgerblue;">void</span> |
+| `destroyAll()` | Destroys each `TooltipInstance` | <span style="color: dodgerblue;">void</span> |
 
 
 ## Properties
-**Some commonly used options are made available through element properties.**
-[**see full list of options**](#All-Options)
-
-|property|Description|type|
+**Some commonly used options are made available through element properties.** [**see full list of options**](#All-Options).
+| property | description | type |
 |---|---|---|
 |`ngxTooltip`| all options can be passed via the directive itself | <span style="color: gold">TooltipOptions</span> |
 |`tooltipContent`| The content of the tooltip. Along with a string or element, you can use a function that takes the reference element as an argument and returns content. |  <ul><li><span style="color: gold">TooltipContent</span></li><li> <span style="color: dodgerblue;">string</span> \| <span style="color: gold">Element</span> \| ((ref: <span style="color: gold">Element</span>) => <span style="color: gold">Element</span> \| <span style="color: dodgerblue;">string</span>)</li><ul> |
@@ -130,11 +129,27 @@ forceCloseAll() {
 |`tooltipTheme`| Themes added as classes (each separated by a space) to the ngx-tooltip element's. | <span style="color: dodgerblue;">string</span>
 |`tooltipAllowHtml` | Determines if the tooltip can have HTML content rendered inside of it. | <span style="color: dodgerblue;">boolean</span> |
 
+ **Additional properties**
+| property | description | type |
+|---|---|---|
+| `id` | tooltip instance unique numeric id. | <span style="color: dodgerblue;">number</span> |
+| `state` | object defining the sate of tooltip instance | <span style="color: gold">TooltipState</span> |
+
+## Methods
+**Some commonly used options are made available through element properties.**
+| method | description | return type |
+|---|---|---|
+| `hide()` | Force hides tooltip. | <span style="color: dodgerblue;">void</span> |
+| `show()` | Force shows tooltip even if disabled. | <span style="color: dodgerblue;">void</span> |
+| `enable()` | Force enables tooltip, unless it is without content, to prevent empty tooltips from being displayed. | <span style="color: dodgerblue;">void</span> |
+| `disable()` | Force disables tooltip. | <span style="color: dodgerblue;">void</span> |
+| `destroy()` | Force destroys tooltip. | <span style="color: dodgerblue;">void</span> |
+
 
 ## Theming
 @teamhive/ngx-tooltip makes use of css variables for theming.
 
-When you pass a theme name via `TooltipModule.forRoot{}`, `ngxTooltip`, or `tooltipTheme` - a css class is attatched to the tooltip elements so they can be targeted for styling.
+When you pass a theme name via `TooltipModule.forRoot{}`, `ngxTooltip`, or `tooltipTheme` - a css class is attached to the tooltip elements so they can be targeted for styling.
 
 ### CSS Variables
 

@@ -49,6 +49,13 @@ export class TooltipService {
     }
 
     /**
+     * Shows all `TooltipInstance`s generated thus far
+     */
+    showAll(duration?: number) {
+        this.instances.forEach(instance => instance.show(duration));
+    }
+
+    /**
      * Disables all `TooltipInstance`s generated thus far
      */
     disableAll() {

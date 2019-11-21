@@ -115,6 +115,7 @@ forceCloseAll() {
 
 ## Properties
 **Some commonly used options are made available through element properties.** [**see full list of options**](#All-Options).
+
 | property | description | type |
 |---|---|---|
 |`ngxTooltip`| all options can be passed via the directive itself | <span style="color: gold">TooltipOptions</span> |
@@ -130,6 +131,7 @@ forceCloseAll() {
 |`tooltipAllowHtml` | Determines if the tooltip can have HTML content rendered inside of it. | <span style="color: dodgerblue;">boolean</span> |
 
  **Additional properties**
+ 
 | property | description | type |
 |---|---|---|
 | `id` | tooltip instance unique numeric id. | <span style="color: dodgerblue;">number</span> |
@@ -137,6 +139,7 @@ forceCloseAll() {
 
 ## Methods
 **Some commonly used options are made available through element properties.**
+
 | method | description | return type |
 |---|---|---|
 | `hide()` | Force hides tooltip. | <span style="color: dodgerblue;">void</span> |

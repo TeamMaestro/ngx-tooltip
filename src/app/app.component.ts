@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TooltipOptions, TooltipContent } from 'dist/ngx-tooltip';
+import { Component, ViewChild } from '@angular/core';
+import { TooltipOptions, TooltipDirective, TooltipService } from 'dist/ngx-tooltip';
 // import { TooltipOptions, TooltipContent } from '@teamhive/ngx-tooltip';
 
 @Component({
@@ -7,22 +7,29 @@ import { TooltipOptions, TooltipContent } from 'dist/ngx-tooltip';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-
-    options: TooltipOptions = {
-    };
-
-    demoText = 'Lorem ipsum dolor';
-
-    tooltipElement: TooltipContent;
+export class AppComponent {
 
     animateOptions = {
         animateFill: false
     };
 
-    constructor() {}
+    customSchemeOptions: TooltipOptions = {
+        trigger: 'manual',
+        interactive: true,
+        hideOnClick: false
+    };
 
-    ngOnInit() {
-        this.tooltipElement = document.getElementById('tooltip-template-demo-1');
+    @ViewChild('customSchemeTooltip', { read: TooltipDirective }) customSchemeTooltip: TooltipDirective;
+
+    constructor(
+        public tooltipService: TooltipService
+    ) {}
+
+    showCustomSchemeTooltip() {
+        this.customSchemeTooltip.show();
     }
-}
+
+    hideCustomSchemeTooltip() {
+        this.customSchemeTooltip.hide();
+        }
+    }

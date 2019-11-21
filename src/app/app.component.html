@@ -312,11 +312,11 @@
 
     <div class="demo-group-content">
 
-            <div class="demo">
-                <div class="demo-example" type="text" ngxTooltip [tooltipMaxWidth]="200">
-                    200
-                </div>
+        <div class="demo">
+            <div class="demo-example" type="text" ngxTooltip [tooltipMaxWidth]="200">
+                200
             </div>
+        </div>
 
         <div class="demo">
             <div class="demo-example" type="text" ngxTooltip [tooltipMaxWidth]="100">
@@ -327,6 +327,30 @@
         <div class="demo">
             <div class="demo-example" type="text" ngxTooltip [tooltipMaxWidth]='50'>
                 50
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="demo" (click)="hideCustomSchemeTooltip()" #customSchemeContent>
+    <div class="demo-example">
+        click to hide
+    </div>
+</div>
+
+<div class="demo-group">
+
+    <div class="demo-group-header">
+        Custom Scheme
+    </div>
+
+    <div class="demo-group-content">
+
+        <div class="demo" (click)="showCustomSchemeTooltip()">
+            <div class="demo-example" type="text" [ngxTooltip]="customSchemeOptions" [tooltipContent]="customSchemeContent" #customSchemeTooltip>
+                click
             </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, ElementRef, Inject } from '@angular/core';
+import { Directive, Input, ElementRef, Inject } from '@angular/core';
 import tippy from 'tippy.js';
 import { TooltipOptionsService } from './ngx-tooltip-options.service';
 import {
@@ -7,7 +7,8 @@ import {
     TooltipPlacement,
     TooltipOptions,
     TooltipAnimation,
-    TooltipArrowType
+    TooltipArrowType,
+    TooltipState
 } from './ngx-tooltip.types';
 import { TooltipService } from './ngx-tooltip.service';
 
@@ -107,33 +108,34 @@ export class TooltipDirective {
         this.updateOptions(this.options);
     }
 
-    get isEnabled() {
-        return this.tooltipInstance && this.tooltipInstance.state.isEnabled;
+    get state(): TooltipState {
+        return this.tooltipInstance ? this.tooltipInstance.state : {};
     }
 
-    updateOptions(options: TooltipOptions) {
+    get id() {
+        return this.tooltipInstance ? this.tooltipInstance.id : undefined;
+    }
+
+    private updateOptions(options: TooltipOptions) {
         // clean options object
         this.options = this.cleanOptions({ ...this.initOptions, ...this.options, ...options });
-        if (this.isEnabled) {
+        if (this.state.isEnabled) {
             if (this.options.content) {
                 this.tooltipInstance.set(this.options);
             } else {
                 this.disable();
             }
+        // ensure tooltip is only enabled if it has content
         } else if (this.options.content) {
             this.enable();
             this.updateOptions(this.options);
         }
     }
 
-    setOptions(options: TooltipOptions) {
-        this.options = options;
-        if (this.tooltipInstance) {
-            this.tooltipInstance.set(options);
-        }
-    }
-
-    cleanOptions(options: any) {
+    /**
+     * Cleans provided options object by deleting all `null` or `undefined` properties
+     */
+    private cleanOptions(options: any) {
         for (const prop in options) {
             if (options[prop] === null || options[prop] === undefined) {
                 delete options[prop];
@@ -142,7 +144,7 @@ export class TooltipDirective {
         return options;
     }
 
-    create() {
+    private create() {
         this.tooltipInstance = tippy(this.el.nativeElement) as TooltipInstance;
         this.tooltipService.addInstance(this.tooltipInstance);
     }
@@ -151,7 +153,7 @@ export class TooltipDirective {
         if (this.tooltipInstance) {
             this.tooltipInstance.destroy();
         }
-        this.tooltipService.removeInstance(this.tooltipInstance);
+        this.tooltipService.removeInstance(this.id);
         this.tooltipInstance = null;
     }
 
@@ -166,6 +168,18 @@ export class TooltipDirective {
     disable() {
         if (this.tooltipInstance) {
             this.tooltipInstance.disable();
+        }
+    }
+
+    show(duration?: number) {
+        if (this.tooltipInstance) {
+            this.tooltipInstance.show(duration);
+        }
+    }
+
+    hide(duration?: number) {
+        if (this.tooltipInstance) {
+            this.tooltipInstance.hide(duration);
         }
     }
 }

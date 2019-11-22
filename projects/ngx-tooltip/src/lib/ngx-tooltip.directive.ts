@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, Inject } from '@angular/core';
+import { Directive, Input, ElementRef, Inject, OnDestroy } from '@angular/core';
 import tippy from 'tippy.js';
 import { TooltipOptionsService } from './ngx-tooltip-options.service';
 import {
@@ -15,7 +15,7 @@ import { TooltipService } from './ngx-tooltip.service';
 @Directive({
     selector: '[ngxTooltip]'
 })
-export class TooltipDirective {
+export class TooltipDirective implements OnDestroy {
 
     private options: TooltipOptions = {};
     private tooltipInstance: TooltipInstance = null;
@@ -25,6 +25,13 @@ export class TooltipDirective {
     }
     get tooltipOptions() {
         return this.options;
+    }
+
+    @Input() set tooltipGroup(group: TooltipOptions['group']) {
+        this.updateOptions({ group });
+    }
+    get group() {
+        return this.tooltipInstance ? this.tooltipInstance.group : undefined;
     }
 
     @Input() set tooltipContent(content: TooltipContent) {
@@ -42,7 +49,7 @@ export class TooltipDirective {
         return this.options.arrowType;
     }
 
-    @Input() set tooltipMaxWidth(maxWidth: number | string) {
+    @Input() set tooltipMaxWidth(maxWidth: TooltipOptions['maxWidth']) {
         this.updateOptions({ maxWidth });
     }
     get tooltipMaxWidth() {
@@ -63,49 +70,52 @@ export class TooltipDirective {
         return this.options.animation;
     }
 
-    @Input() set tooltipTrigger(trigger: string) {
+    @Input() set tooltipTrigger(trigger: TooltipOptions['trigger']) {
         this.updateOptions({ trigger });
     }
     get tooltipTrigger() {
         return this.options.trigger;
     }
 
-    @Input() set tooltipTouch(touch: boolean) {
+    @Input() set tooltipTouch(touch: TooltipOptions['touch']) {
         this.updateOptions({ touch });
     }
     get tooltipTouch() {
         return this.options.touch;
     }
 
-    @Input() set tooltipTouchHold(touchHold: boolean) {
+    @Input() set tooltipTouchHold(touchHold: TooltipOptions['touchHold']) {
         this.updateOptions({ touchHold });
     }
     get tooltipTouchHold() {
         return this.options.touchHold;
     }
 
-    @Input() set tooltipTheme(theme: string) {
+    @Input() set tooltipTheme(theme: TooltipOptions['theme']) {
         this.updateOptions({ theme });
     }
     get tooltipTheme() {
         return this.options.theme;
     }
 
-    @Input() set tooltipAllowHtml(allowHTML: boolean) {
+    @Input() set tooltipAllowHtml(allowHTML: TooltipOptions['allowHTML']) {
         if (allowHTML !== null || allowHTML !== undefined) {
 
         }
         this.updateOptions({ allowHTML });
     }
 
-
     constructor(
-        @Inject(TooltipOptionsService) private initOptions,
+        @Inject(TooltipOptionsService) private initOptions: TooltipOptions,
         private el: ElementRef,
         private tooltipService: TooltipService,
     ) {
         this.create();
         this.updateOptions(this.options);
+    }
+
+    ngOnDestroy() {
+        this.destroy();
     }
 
     get state(): TooltipState {
@@ -116,7 +126,8 @@ export class TooltipDirective {
         return this.tooltipInstance ? this.tooltipInstance.id : undefined;
     }
 
-    private updateOptions(options: TooltipOptions) {
+    private updateOptions(options: Partial<TooltipOptions>) {
+        const previousGroup = this.group;
         // clean options object
         this.options = this.cleanOptions({ ...this.initOptions, ...this.options, ...options });
         if (this.state.isEnabled) {
@@ -130,12 +141,22 @@ export class TooltipDirective {
             this.enable();
             this.updateOptions(this.options);
         }
+        // maintain group collections
+        this.tooltipInstance.group = this.options.group;
+        if (previousGroup !== this.group) {
+            if (previousGroup) {
+                this.tooltipService.removeGroupInstance(this.id, previousGroup);
+            }
+            if (this.group) {
+                this.tooltipService.addGroupInstance(this.tooltipInstance);
+            }
+        }
     }
 
     /**
      * Cleans provided options object by deleting all `null` or `undefined` properties
      */
-    private cleanOptions(options: any) {
+    private cleanOptions(options: Partial<TooltipOptions>) {
         for (const prop in options) {
             if (options[prop] === null || options[prop] === undefined) {
                 delete options[prop];
@@ -153,7 +174,7 @@ export class TooltipDirective {
         if (this.tooltipInstance) {
             this.tooltipInstance.destroy();
         }
-        this.tooltipService.removeInstance(this.id);
+        this.tooltipService.removeInstance(this.id, this.group);
         this.tooltipInstance = null;
     }
 

@@ -130,6 +130,8 @@ export class TooltipDirective implements OnDestroy {
         const previousGroup = this.group;
         // clean options object
         this.options = this.cleanOptions({ ...this.initOptions, ...this.options, ...options });
+        const { group } = this.options;
+        delete this.options.group; // group is not a valid tippy.js prop so must be removed
         if (this.state.isEnabled) {
             if (this.options.content) {
                 this.tooltipInstance.set(this.options);
@@ -142,8 +144,8 @@ export class TooltipDirective implements OnDestroy {
             this.updateOptions(this.options);
         }
         // maintain group collections
-        this.tooltipInstance.group = this.options.group;
-        if (previousGroup !== this.group) {
+        this.tooltipInstance.group = group;
+        if (previousGroup !== group) {
             if (previousGroup) {
                 this.tooltipService.removeGroupInstance(this.id, previousGroup);
             }

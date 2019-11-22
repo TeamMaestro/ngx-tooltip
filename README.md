@@ -520,7 +520,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Any changes made to the ngx-tooltip library will not take affect until it is built.
 
-Run `npm run build.ngx-tooltip` The library build artifacts will be stored in the `dist/ngx-tooltip` directory. Additionally, any styles in the `projects/ngx-tooltip/assets/styles` directory will be copied to `dist/ngx-tooltip/assets/styles`.
+Run `npm run build:ngx-tooltip` The library build artifacts will be stored in the `dist/ngx-tooltip` directory. Additionally, any styles in the `projects/ngx-tooltip/assets/styles` directory will be copied to `dist/ngx-tooltip/assets/styles`.
 
 ### Code scaffolding
 

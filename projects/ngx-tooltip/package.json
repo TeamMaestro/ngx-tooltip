@@ -1,6 +1,6 @@
 {
     "name": "@teamhive/ngx-tooltip",
-    "version": "0.3.7",
+    "version": "0.3.8",
     "dependencies": {
         "tippy.js": "~4.0.4"
     },

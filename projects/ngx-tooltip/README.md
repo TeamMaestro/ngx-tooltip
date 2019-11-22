@@ -111,6 +111,7 @@ forceCloseAll() {
 | `enableAll()` | Enables each `TooltipInstance` except those without content to prevent empty tooltips from being displayed. | <span style="color: dodgerblue;">void</span> |
 | `disableAll()` | Disables each `TooltipInstance` | <span style="color: dodgerblue;">void</span> |
 | `destroyAll()` | Destroys each `TooltipInstance` | <span style="color: dodgerblue;">void</span> |
+| `getGroup()` | Returns group `TooltipInstance` collection | <span style="color: gold">Map</span><<span style="color: dodgerblue;">string</span> \| <span style="color: dodgerblue;">number</span>, <span style="color: gold">TooltipInstance</span>> |
 
 
 ## Properties
@@ -119,6 +120,7 @@ forceCloseAll() {
 | property | description | type |
 |---|---|---|
 |`ngxTooltip`| all options can be passed via the directive itself | <span style="color: gold">TooltipOptions</span> |
+|`tooltipGroup`| specifies a group collection the tooltip should belong to. Actions can be applied to an entire group via the <span style="color: gold">TooltipService</span>. This property is custom to NgxTooltip and does not have a tippy.js equivalent. | <span style="color: dodgerblue">string</span> \| <span style="color: dodgerblue">number</span> |
 |`tooltipContent`| The content of the tooltip. Along with a string or element, you can use a function that takes the reference element as an argument and returns content. |  <ul><li><span style="color: gold">TooltipContent</span></li><li> <span style="color: dodgerblue;">string</span> \| <span style="color: gold">Element</span> \| ((ref: <span style="color: gold">Element</span>) => <span style="color: gold">Element</span> \| <span style="color: dodgerblue;">string</span>)</li><ul> |
 |`tooltipPlacement`| Positions the tippy relative to its reference element. Use the suffix <span style="color: green">'-start'</span> or <span style="color: green">'-end'</span> to shift the tippy to the start or end of the reference element, instead of centering it. For example, top-start or left-end. | <ul><li><span style="color: gold">TooltipPlacement</span></li><li> <span style="color: green">'top'</span> \| <span style="color: green">'bottom'</span> \| <span style="color: green">'left'</span> \| <span style="color: green">'right'</span> \| <span style="color: green">'top-start'</span> \| <span style="color: green">'top-end'</span> \| <span style="color: green">'bottom-start'</span> \| <span style="color: green">'bottom-end'</span> \| <span style="color: green">'left-start'</span> \| <span style="color: green">'left-end'</span> \| <span style="color: green">'right-start'</span> \| <span style="color: green">'right-end'</li></ul> |
 |`tooltipAnimation`| The type of transition animation. | <ul><li><span style="color: gold;">TooltipAnimation</span></li><li><span style="color: green;">'shift-away'</span> \| <span style="color: green;">'shift-toward'</span> \| <span style="color: green">'fade'</span> \| <span style="color: green">'scale'</span> \| <span style="color: green;">'perspective'</span></li></ul> |
@@ -132,10 +134,13 @@ forceCloseAll() {
 
  **Additional properties**
  
+ cannot be set via Element properties
+ 
 | property | description | type |
 |---|---|---|
 | `id` | tooltip instance unique numeric id. | <span style="color: dodgerblue;">number</span> |
 | `state` | object defining the sate of tooltip instance | <span style="color: gold">TooltipState</span> |
+| `group` | optional tooltip instance group id | <span style="color: dodgerblue">string</span> \| <span style="color: dodgerblue">number</span> |
 
 ## Methods
 **Some commonly used options are made available through element properties.**
@@ -212,6 +217,12 @@ for advanced theming, see the Tippy.js [theming docs](https://atomiks.github.io/
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td data-label="Option"><code class="language-text">group</code></td>
+            <td align="center" data-label="Type"><code class="language-text">string</code>, <code class="language-text">number</code></td>
+            <td align="center" data-label="Default"><code class="language-text">undefined</code></td>
+            <td data-label="Description">specifies a group collection the tooltip should belong to. Actions can be applied to an entire group via the <code class="language-text">TooltipService</code>TooltipService</span>. This property is custom to NgxTooltip and does not have a tippy.js equivalent.</td>
+        </tr>
         <tr>
             <td data-label="Option"><code class="language-text">a11y</code></td>
             <td align="center" data-label="Type"><code class="language-text">boolean</code></td>

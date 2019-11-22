@@ -30,8 +30,8 @@ export class TooltipDirective implements OnDestroy {
     @Input() set tooltipGroup(group: TooltipOptions['group']) {
         this.updateOptions({ group });
     }
-    get group() {
-        return this.tooltipInstance ? this.tooltipInstance.group : undefined;
+    get tooltipGroup() {
+        return this.options.group;
     }
 
     @Input() set tooltipContent(content: TooltipContent) {
@@ -126,6 +126,10 @@ export class TooltipDirective implements OnDestroy {
         return this.tooltipInstance ? this.tooltipInstance.id : undefined;
     }
 
+    get group() {
+        return this.tooltipInstance ? this.tooltipInstance.group : undefined;
+    }
+
     private updateOptions(options: Partial<TooltipOptions>) {
         const previousGroup = this.group;
         // clean options object
@@ -144,12 +148,13 @@ export class TooltipDirective implements OnDestroy {
             this.updateOptions(this.options);
         }
         // maintain group collections
+        this.options.group = group;
         this.tooltipInstance.group = group;
         if (previousGroup !== group) {
             if (previousGroup) {
                 this.tooltipService.removeGroupInstance(this.id, previousGroup);
             }
-            if (this.group) {
+            if (group) {
                 this.tooltipService.addGroupInstance(this.tooltipInstance);
             }
         }

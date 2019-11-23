@@ -30,8 +30,8 @@ export class TooltipDirective implements OnDestroy {
     @Input() set tooltipGroup(group: TooltipOptions['group']) {
         this.updateOptions({ group });
     }
-    get group() {
-        return this.tooltipInstance ? this.tooltipInstance.group : undefined;
+    get tooltipGroup() {
+        return this.options.group;
     }
 
     @Input() set tooltipContent(content: TooltipContent) {
@@ -99,10 +99,10 @@ export class TooltipDirective implements OnDestroy {
     }
 
     @Input() set tooltipAllowHtml(allowHTML: TooltipOptions['allowHTML']) {
-        if (allowHTML !== null || allowHTML !== undefined) {
-
-        }
         this.updateOptions({ allowHTML });
+    }
+    get tooltipAllowHtml() {
+        return this.options.allowHTML;
     }
 
     constructor(
@@ -126,34 +126,49 @@ export class TooltipDirective implements OnDestroy {
         return this.tooltipInstance ? this.tooltipInstance.id : undefined;
     }
 
+    get group() {
+        return this.tooltipInstance ? this.tooltipInstance.group : undefined;
+    }
+
+
+    /**
+     * Update the `TooltipInstance` options, and update the related state and collections.
+     * @param options block of any or all new `TooltipOption` to be added to `TooltipInstance`
+     */
     private updateOptions(options: Partial<TooltipOptions>) {
-        const previousGroup = this.group;
         // clean options object
+        const previousGroup = this.group; // save previous group to maintain group collections
         this.options = this.cleanOptions({ ...this.initOptions, ...this.options, ...options });
         const { group } = this.options;
         delete this.options.group; // group is not a valid tippy.js prop so must be removed
+
+        // set options
         if (this.state.isEnabled) {
             if (this.options.content) {
                 this.tooltipInstance.set(this.options);
             } else {
-                this.disable();
+                this.disable(); // tooltips without content should be disabled
             }
+
         // ensure tooltip is only enabled if it has content
         } else if (this.options.content) {
             this.enable();
-            this.updateOptions(this.options);
+            return this.updateOptions({ ...this.options, group }); // retry update
         }
+
         // maintain group collections
+        this.options.group = group;
         this.tooltipInstance.group = group;
         if (previousGroup !== group) {
             if (previousGroup) {
                 this.tooltipService.removeGroupInstance(this.id, previousGroup);
             }
-            if (this.group) {
+            if (group) {
                 this.tooltipService.addGroupInstance(this.tooltipInstance);
             }
         }
     }
+
 
     /**
      * Cleans provided options object by deleting all `null` or `undefined` properties
@@ -167,11 +182,19 @@ export class TooltipDirective implements OnDestroy {
         return options;
     }
 
+
+    /**
+     * Create new `TooltipInstance` and add to collections
+     */
     private create() {
         this.tooltipInstance = tippy(this.el.nativeElement) as TooltipInstance;
         this.tooltipService.addInstance(this.tooltipInstance);
     }
 
+
+    /**
+     * Destroy current `TooltipInstance` and remove from collections
+     */
     destroy() {
         if (this.tooltipInstance) {
             this.tooltipInstance.destroy();
@@ -180,6 +203,10 @@ export class TooltipDirective implements OnDestroy {
         this.tooltipInstance = null;
     }
 
+
+    /**
+     * Enable current `TooltipInstance` or create new `TooltipInstance` if it doesn't yet exits.
+     */
     enable() {
         if (this.tooltipInstance) {
             this.tooltipInstance.enable();
@@ -188,18 +215,32 @@ export class TooltipDirective implements OnDestroy {
         }
     }
 
+
+    /**
+     * Disable current `TooltipInstance`
+     */
     disable() {
         if (this.tooltipInstance) {
             this.tooltipInstance.disable();
         }
     }
 
+
+    /**
+     *  Show current `TooltipInstance`. Ignores enabled status.
+     * @param duration length in milliseconds of show animation
+     */
     show(duration?: number) {
         if (this.tooltipInstance) {
             this.tooltipInstance.show(duration);
         }
     }
 
+
+    /**
+     * Hide current `TooltipInstance`
+     * @param duration length in milliseconds of hide animation
+     */
     hide(duration?: number) {
         if (this.tooltipInstance) {
             this.tooltipInstance.hide(duration);

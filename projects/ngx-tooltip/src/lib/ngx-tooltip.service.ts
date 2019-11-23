@@ -47,10 +47,14 @@ export class TooltipService {
      * @param instance `TooltipInstance` to be added
      */
     addGroupInstance(instance: TooltipInstance) {
-        if (!this.groups.has(instance.group)) {
-            this.groups.set(instance.group, new Map<TooltipInstance['id'], TooltipInstance>());
+        if (instance.group) {
+            if (!this.groups.has(instance.group)) {
+                this.groups.set(instance.group, new Map<TooltipInstance['id'], TooltipInstance>());
+            }
+            this.groups.get(instance.group).set(instance.id, instance);
+        } else {
+            console.error('TooltipInstance missing necessary \'group\ property: cannot be added to group collection');
         }
-        this.groups.get(instance.group).set(instance.id, instance);
     }
 
     /**

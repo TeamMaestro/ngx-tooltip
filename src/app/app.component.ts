@@ -16,7 +16,7 @@ export class AppComponent {
     customSchemeOptions: TooltipOptions = {
         trigger: 'manual',
         interactive: true,
-        hideOnClick: false
+        hideOnClick: false,
     };
 
     @ViewChild('customSchemeTooltip', { read: TooltipDirective }) customSchemeTooltip: TooltipDirective;

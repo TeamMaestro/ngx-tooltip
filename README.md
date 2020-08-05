@@ -22,7 +22,7 @@ import { TooltipModule, TooltipOptions } from '@teamhive/ngx-tooltip';
         TooltipModule.forRoot({
             // custom defaults go here e.g.
             placement: 'top',
-            arrow: 'true',
+            arrow: true,
             arrowType: 'sharp',
             allowHTML: true,
             maxWidth: 200
